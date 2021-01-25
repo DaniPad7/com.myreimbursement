@@ -1,11 +1,11 @@
-# Java With Automation Environment Setup Guide
+# Java MSA Environment Setup Guide
 ---
 
 ## Purpose
 
 > This document provides a list of the required technologies for anyone who will be participating in the JWA program. It details why each technology is required and provides some step-by-step instructions on how to install and configure the technologies. This guide also walks you through any needed environment setup.
 
-**NOTE**: It is VERY important that you install these technologies before training begins as we will not have much time to devote to environment setup due to the volume of content we'll cover. It is also important that you install the correct versions of the tools listed here as not all versions of the technologies we will use are guaranteed to be compatible with each other. If you choose to use a different version of one of the tools listed here, you will be responsible for debugging issues that are specific to your version.
+**NOTE**: It is VERY important that you install these technologies as early as possible since we will not have much time to devote to environment setup due to the volume of content we'll cover. It is also important that you install the correct versions of the tools listed here as not all versions of the technologies we will use are guaranteed to be compatible with each other. If you choose to use a different version of one of the tools listed here, you will be responsible for debugging issues that are specific to your version.
 
 ## Required Technologies
 
