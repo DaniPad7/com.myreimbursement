@@ -1,5 +1,6 @@
 package com.mydealership.main;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -29,17 +30,19 @@ public class MyDealershipMain {
 				log.info("26) Exit");
 				try {
 					starterOption = Integer.parseInt(scanner.nextLine());
-					}catch(NumberFormatException e) {}
+					}catch(NumberFormatException |NoSuchElementException e) {
+						e.getMessage();
+					}
 				switch(starterOption) {
 				case 1:
-					log.info("Option under construction");
+					log.info("Option under construction. Login");
 					break;
 				case 2:
 					try {
-						userPersonalInfoFactory.setUserPersonalInfoAndUserCorpInfoGetFormer();//look into impl it is bugged
+						userPersonalInfoFactory.setUserPersonalInfoAndUserCorpInfo();
 						log.info(userPersonalInfoFactory.getUserCorpInfo());
+						log.info(userPersonalInfoFactory.getUserPersonalInfo());
 					} catch (BusinessException e) {
-						
 						e.printStackTrace();
 					}
 					break;

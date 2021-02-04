@@ -5,6 +5,6 @@ import com.mydealership.model.UserPersonalInfo;
 
 public interface PersonalInfoFactory {
 	
-	public UserPersonalInfo setUserPersonalInfoAndUserCorpInfoGetFormer() throws BusinessException;
+	public void setUserPersonalInfoAndUserCorpInfo() throws BusinessException;
 
 }
