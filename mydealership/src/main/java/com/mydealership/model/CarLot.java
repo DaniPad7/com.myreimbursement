@@ -11,13 +11,14 @@ public class CarLot {
 	private String carYear;
 	private boolean isNew;
 	private int odometerReading;
+	private float price;
 	
 	public CarLot() {
 		super();
 	}
 
 	public CarLot(int carId, boolean isOwned, int userId, String carMaker, String carType, String carModel,
-			String carColor, String carYear, boolean isNew, int odometerReading) {
+			String carColor, String carYear, boolean isNew, int odometerReading, float price) {
 		super();
 		this.carId = carId;
 		this.isOwned = isOwned;
@@ -29,6 +30,7 @@ public class CarLot {
 		this.carYear = carYear;
 		this.isNew = isNew;
 		this.odometerReading = odometerReading;
+		this.price = price;
 	}
 
 	public int getCarId() {
@@ -111,6 +113,14 @@ public class CarLot {
 		this.odometerReading = odometerReading;
 	}
 
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,6 +134,7 @@ public class CarLot {
 		result = prime * result + (isNew ? 1231 : 1237);
 		result = prime * result + (isOwned ? 1231 : 1237);
 		result = prime * result + odometerReading;
+		result = prime * result + Float.floatToIntBits(price);
 		result = prime * result + userId;
 		return result;
 	}
@@ -170,6 +181,8 @@ public class CarLot {
 			return false;
 		if (odometerReading != other.odometerReading)
 			return false;
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+			return false;
 		if (userId != other.userId)
 			return false;
 		return true;
@@ -179,8 +192,10 @@ public class CarLot {
 	public String toString() {
 		return "CarLot [carId=" + carId + ", isOwned=" + isOwned + ", userId=" + userId + ", carMaker=" + carMaker
 				+ ", carType=" + carType + ", carModel=" + carModel + ", carColor=" + carColor + ", carYear=" + carYear
-				+ ", isNew=" + isNew + ", odometerReading=" + odometerReading + "]";
+				+ ", isNew=" + isNew + ", odometerReading=" + odometerReading + ", price=" + price + "]";
 	}
+
+	
 	
 	
 

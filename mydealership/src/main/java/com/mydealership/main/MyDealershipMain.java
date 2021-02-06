@@ -6,9 +6,21 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.mydealership.exception.BusinessException;
-import com.mydealership.factory.impl.UserPersonalInfoFactoryImpl;
+import com.mydealership.exception.EmptyQueryException;
+import com.mydealership.exception.NullInfoException;
+import com.mydealership.model.UserCorpInfo;
 import com.mydealership.service.DealershipInsertService;
+import com.mydealership.service.DealershipViewService;
 import com.mydealership.service.impl.DealershipInsertServiceImpl;
+import com.mydealership.service.impl.DealershipViewServiceImpl;
+import com.mydealership.service.util.factory.CarLotFactory;
+import com.mydealership.service.util.factory.LoginFactory;
+import com.mydealership.service.util.factory.PersonalInfoFactory;
+import com.mydealership.service.util.factory.UserFinanceInfoFactory;
+import com.mydealership.service.util.factory.impl.CarLotFactoryImpl;
+import com.mydealership.service.util.factory.impl.LoginFactoryImpl;
+import com.mydealership.service.util.factory.impl.UserFinanceInfoFactoryImpl;
+import com.mydealership.service.util.factory.impl.UserPersonalInfoFactoryImpl;
 
 public class MyDealershipMain {
 	public static Logger log = Logger.getLogger(MyDealershipMain.class);
@@ -17,8 +29,13 @@ public class MyDealershipMain {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		DealershipInsertService dealershipInsertService = new DealershipInsertServiceImpl();
+		DealershipViewService dealershipViewService = new DealershipViewServiceImpl();
 		
-		UserPersonalInfoFactoryImpl userPersonalInfoFactory = new UserPersonalInfoFactoryImpl();
+		PersonalInfoFactory userPersonalInfoFactory = new UserPersonalInfoFactoryImpl();
+		UserFinanceInfoFactory userFinancefactoryImpl = new UserFinanceInfoFactoryImpl();
+		CarLotFactory carLotFactoryImpl = new CarLotFactoryImpl();
+		LoginFactory loginFactoryImpl = new LoginFactoryImpl();
+		
 		
 		int starterOption = 0;
 		do {
@@ -31,11 +48,24 @@ public class MyDealershipMain {
 				try {
 					starterOption = Integer.parseInt(scanner.nextLine());
 					}catch(NumberFormatException |NoSuchElementException e) {
-						e.getMessage();
+						log.info(e.getMessage());
 					}
 				switch(starterOption) {
 				case 1:
-					log.info("Option under construction. Login");
+					try {
+						loginFactoryImpl.setLogin();
+						log.info(loginFactoryImpl.getLogIn());
+						UserCorpInfo userCorpInfoRetrieved = dealershipViewService.login(loginFactoryImpl.getLogIn().getUsername(), loginFactoryImpl.getLogIn().getPassword());// this one throws NullInfoException
+						if(userCorpInfoRetrieved.isEmployee() == true) {
+							//run this
+						}
+						else if(userCorpInfoRetrieved.isEmployee() == false){
+							//run this
+						}
+						else {}
+					} catch (BusinessException | NullInfoException | EmptyQueryException e1) {
+						log.info(e1.getMessage());
+					}
 					break;
 				case 2:
 					try {

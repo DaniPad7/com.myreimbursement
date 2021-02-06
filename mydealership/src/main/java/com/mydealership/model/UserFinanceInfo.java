@@ -8,8 +8,8 @@ public class UserFinanceInfo {
 	private int userId;
 	private float principalLoan;
 	private int loanLength;
-	private double apr;
 	private int creditScore;
+	private double apr;
 	private boolean isAccepted;
 	private Date offerDate;
 	

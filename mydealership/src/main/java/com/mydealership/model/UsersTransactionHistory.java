@@ -9,6 +9,7 @@ public class UsersTransactionHistory {
 	private float amount;
 	private float remainingBalance;
 	private float nextPayment;
+	private int paymentsLeft;
 	private Date transactionDate;
 	
 	public UsersTransactionHistory() {
@@ -16,7 +17,7 @@ public class UsersTransactionHistory {
 	}
 
 	public UsersTransactionHistory(int transactionId, int userId, int carId, float amount, float remainingBalance,
-			float nextPayment, Date transactionDate) {
+			float nextPayment, int paymentsLeft, Date transactionDate) {
 		super();
 		this.transactionId = transactionId;
 		this.userId = userId;
@@ -24,6 +25,7 @@ public class UsersTransactionHistory {
 		this.amount = amount;
 		this.remainingBalance = remainingBalance;
 		this.nextPayment = nextPayment;
+		this.paymentsLeft = paymentsLeft;
 		this.transactionDate = transactionDate;
 	}
 
@@ -75,6 +77,14 @@ public class UsersTransactionHistory {
 		this.nextPayment = nextPayment;
 	}
 
+	public int getPaymentsLeft() {
+		return paymentsLeft;
+	}
+
+	public void setPaymentsLeft(int paymentsLeft) {
+		this.paymentsLeft = paymentsLeft;
+	}
+
 	public Date getTransactionDate() {
 		return transactionDate;
 	}
@@ -90,6 +100,7 @@ public class UsersTransactionHistory {
 		result = prime * result + Float.floatToIntBits(amount);
 		result = prime * result + carId;
 		result = prime * result + Float.floatToIntBits(nextPayment);
+		result = prime * result + paymentsLeft;
 		result = prime * result + Float.floatToIntBits(remainingBalance);
 		result = prime * result + ((transactionDate == null) ? 0 : transactionDate.hashCode());
 		result = prime * result + transactionId;
@@ -112,6 +123,8 @@ public class UsersTransactionHistory {
 			return false;
 		if (Float.floatToIntBits(nextPayment) != Float.floatToIntBits(other.nextPayment))
 			return false;
+		if (paymentsLeft != other.paymentsLeft)
+			return false;
 		if (Float.floatToIntBits(remainingBalance) != Float.floatToIntBits(other.remainingBalance))
 			return false;
 		if (transactionDate == null) {
@@ -130,8 +143,10 @@ public class UsersTransactionHistory {
 	public String toString() {
 		return "UsersTransactionHistory [transactionId=" + transactionId + ", userId=" + userId + ", carId=" + carId
 				+ ", amount=" + amount + ", remainingBalance=" + remainingBalance + ", nextPayment=" + nextPayment
-				+ ", transactionDate=" + transactionDate + "]";
+				+ ", paymentsLeft=" + paymentsLeft + ", transactionDate=" + transactionDate + "]";
 	}
+
+	
 	
 	
 

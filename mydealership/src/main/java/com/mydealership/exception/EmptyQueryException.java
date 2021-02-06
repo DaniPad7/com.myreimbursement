@@ -1,33 +1,31 @@
 package com.mydealership.exception;
 
-public class BusinessException extends Exception{
+public class EmptyQueryException extends Exception{
 
-	public BusinessException() {
+	public EmptyQueryException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BusinessException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public EmptyQueryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BusinessException(String message, Throwable cause) {
+	public EmptyQueryException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BusinessException(String message) {
+	public EmptyQueryException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BusinessException(Throwable cause) {
+	public EmptyQueryException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 	
 	
 

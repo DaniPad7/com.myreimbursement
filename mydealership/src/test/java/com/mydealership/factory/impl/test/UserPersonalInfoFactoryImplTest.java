@@ -7,12 +7,16 @@ import org.junit.Test;
 public class UserPersonalInfoFactoryImplTest {
 
 	@Test
-	public void testSetUserPersonalInfoAndUserCorpInfoGetFormer() {
+	public void testSetUserPersonalInfoAndUserCorpInfo() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetUserCorpInfo() {
+		fail("Not yet implemented");
+	}
+	@Test
+	public void testGetUserPersonalInfo() {
 		fail("Not yet implemented");
 	}
 

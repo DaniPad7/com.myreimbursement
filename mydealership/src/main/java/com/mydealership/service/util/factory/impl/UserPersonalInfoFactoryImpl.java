@@ -1,4 +1,4 @@
-package com.mydealership.factory.impl;
+package com.mydealership.service.util.factory.impl;
 
 import java.sql.Date;
 import java.util.Scanner;
@@ -6,13 +6,13 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.mydealership.exception.BusinessException;
-import com.mydealership.factory.PersonalInfoFactory;
 import com.mydealership.model.UserCorpInfo;
 import com.mydealership.model.UserPersonalInfo;
+import com.mydealership.service.util.factory.PersonalInfoFactory;
 
 public class UserPersonalInfoFactoryImpl implements PersonalInfoFactory{
 	public static Logger log = Logger.getLogger(UserPersonalInfoFactoryImpl.class);
-	Scanner scanner = new Scanner(System.in);
+	public Scanner scanner = new Scanner(System.in);
 	
 	private UserPersonalInfo userPersonalInfo;
 	private UserCorpInfo userCorporateInfo;
@@ -371,10 +371,11 @@ public class UserPersonalInfoFactoryImpl implements PersonalInfoFactory{
 			
 		}while(signUpOption != 55);
 	}
-	
+	@Override
 	public UserCorpInfo getUserCorpInfo() {
 		return userCorporateInfo;
 	}
+	@Override
 	public UserPersonalInfo getUserPersonalInfo() {
 		return userPersonalInfo;
 	}
