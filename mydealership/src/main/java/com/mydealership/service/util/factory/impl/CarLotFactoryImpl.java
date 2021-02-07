@@ -31,9 +31,7 @@ public class CarLotFactoryImpl implements CarLotFactory{
 				int i = 0;
 				switch(runSwitch0) {
 				case 1:
-					//carLot.setOwned(false);
-					//carId is automatic
-					//do something with userId is probably through storage
+					carLot.setOwned(false);
 					while(i < 1) {
 						log.info("Enter the Vehicle Maker: ");
 						carLot.setCarMaker(scanner.nextLine());
@@ -94,7 +92,7 @@ public class CarLotFactoryImpl implements CarLotFactory{
 					
 				case 6:
 					while(i < 6) {
-						log.info("Is the Vehicle New or Used? Type Yes or No: ");
+						log.info("Is the Vehicle New? Type Yes or No: ");
 						String isNewValidator= scanner.nextLine();
 						if(isNewValidator.matches("Yes")) {
 							carLot.setNew(true);
@@ -111,7 +109,7 @@ public class CarLotFactoryImpl implements CarLotFactory{
 					
 				case 7:
 					while(i < 7) {
-						log.info("Enter your Odometer reading: ");
+						log.info("Enter the Odometer reading: ");
 						int odometerValidator = Integer.parseInt(scanner.nextLine());
 						if(odometerValidator < 500_000 && odometerValidator > 0) {
 							carLot.setOdometerReading(odometerValidator);
@@ -129,6 +127,7 @@ public class CarLotFactoryImpl implements CarLotFactory{
 						if(priceValidator < 100_000 && priceValidator > 0) {
 							carLot.setPrice(priceValidator);
 							i = 8;
+							isReady0 = 75;
 						}
 						else {
 							log.info("Amount is out of bounds. Please try again.");

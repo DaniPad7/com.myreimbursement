@@ -1,10 +1,12 @@
 package com.mydealership.dao;
 
+import java.sql.SQLException;
+
 import com.mydealership.exception.BusinessException;
 
 public interface DealershipDeletionDAO {
-	public void deleteCarFromLot() throws BusinessException;
-	public void deleteOffersDorOwnedCar() throws BusinessException;
-	public void delete() throws BusinessException;
+	void deleteCarFromLot() throws BusinessException;
+	void deleteOffersForOwnedCar() throws BusinessException;
+	void deleteProfileWhenDuplicate();
 
 }

@@ -1,9 +1,12 @@
 package com.mydealership.service;
 
+import java.sql.SQLException;
+
 import com.mydealership.exception.BusinessException;
 
 public interface DealershipDeletionService {
-	public void deleteCarFromLot() throws BusinessException;
-	public void deleteOffersDorOwnedCar() throws BusinessException;
+	void deleteCarFromLot() throws BusinessException;
+	void deleteOffersForOwnedCar() throws BusinessException;
+	void deleteProfileWhenDuplicate();
 
 }

@@ -14,10 +14,14 @@ import com.mydealership.service.DealershipViewService;
 import com.mydealership.service.impl.DealershipInsertServiceImpl;
 import com.mydealership.service.impl.DealershipViewServiceImpl;
 import com.mydealership.service.util.factory.CarLotFactory;
+import com.mydealership.service.util.factory.CustomerFunctionsFactory;
+import com.mydealership.service.util.factory.EmployeeFunctionsFactory;
 import com.mydealership.service.util.factory.LoginFactory;
 import com.mydealership.service.util.factory.PersonalInfoFactory;
 import com.mydealership.service.util.factory.UserFinanceInfoFactory;
 import com.mydealership.service.util.factory.impl.CarLotFactoryImpl;
+import com.mydealership.service.util.factory.impl.CustomerFunctionsFactoryImpl;
+import com.mydealership.service.util.factory.impl.EmployeeFunctionsFactoryImpl;
 import com.mydealership.service.util.factory.impl.LoginFactoryImpl;
 import com.mydealership.service.util.factory.impl.UserFinanceInfoFactoryImpl;
 import com.mydealership.service.util.factory.impl.UserPersonalInfoFactoryImpl;
@@ -33,8 +37,9 @@ public class MyDealershipMain {
 		
 		PersonalInfoFactory userPersonalInfoFactory = new UserPersonalInfoFactoryImpl();
 		UserFinanceInfoFactory userFinancefactoryImpl = new UserFinanceInfoFactoryImpl();
-		CarLotFactory carLotFactoryImpl = new CarLotFactoryImpl();
 		LoginFactory loginFactoryImpl = new LoginFactoryImpl();
+		CustomerFunctionsFactory customerFunctionsFactoryImpl = new CustomerFunctionsFactoryImpl();
+		EmployeeFunctionsFactory employeeFunctionsFactory = new EmployeeFunctionsFactoryImpl();
 		
 		
 		int starterOption = 0;
@@ -54,13 +59,12 @@ public class MyDealershipMain {
 				case 1:
 					try {
 						loginFactoryImpl.setLogin();
-						log.info(loginFactoryImpl.getLogIn());
 						UserCorpInfo userCorpInfoRetrieved = dealershipViewService.login(loginFactoryImpl.getLogIn().getUsername(), loginFactoryImpl.getLogIn().getPassword());// this one throws NullInfoException
-						if(userCorpInfoRetrieved.isEmployee() == true) {
-							//run this
+						if(userCorpInfoRetrieved.isEmployee() == false) {
+							customerFunctionsFactoryImpl.customerFunctions(userCorpInfoRetrieved.getUserId());
 						}
-						else if(userCorpInfoRetrieved.isEmployee() == false){
-							//run this
+						else if(userCorpInfoRetrieved.isEmployee() == true){
+							employeeFunctionsFactory.employeeFunctions(userCorpInfoRetrieved.getUserId());
 						}
 						else {}
 					} catch (BusinessException | NullInfoException | EmptyQueryException e1) {
@@ -70,11 +74,10 @@ public class MyDealershipMain {
 				case 2:
 					try {
 						userPersonalInfoFactory.setUserPersonalInfoAndUserCorpInfo();
-						log.info(userPersonalInfoFactory.getUserCorpInfo());
-						log.info(userPersonalInfoFactory.getUserPersonalInfo());
-					} catch (BusinessException e) {
+						dealershipInsertService.registerCustomerAccount(userPersonalInfoFactory.getUserPersonalInfo(), userPersonalInfoFactory.getUserCorpInfo());// this one throws NullInfoException
+					} catch (BusinessException | NullInfoException e) {
 						e.printStackTrace();
-					}
+					} 
 					break;
 				case 26:
 					log.info("Thank you and have a nice day.");

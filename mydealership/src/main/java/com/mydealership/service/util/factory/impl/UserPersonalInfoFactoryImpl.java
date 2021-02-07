@@ -252,7 +252,7 @@ public class UserPersonalInfoFactoryImpl implements PersonalInfoFactory{
 										i = 4;
 									}
 									else {
-										log.info("Try the format \"000-000-0000\". Please try again.");
+										log.info("Try the format 000-000-0000. Please try again.");
 									}
 								}
 						case 5:
@@ -263,7 +263,7 @@ public class UserPersonalInfoFactoryImpl implements PersonalInfoFactory{
 									i = 5;
 								}
 								else {
-									log.info("For example /'example12@gmail.com'/. Please try again.");
+									log.info("For example example12@gmail.com. Please try again.");
 								}
 							}
 						case 6:
