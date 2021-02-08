@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mydealership.dao.DealershipViewDAO;
@@ -55,9 +56,43 @@ public class DealershipViewDAOImpl implements DealershipViewDAO {
 	}
 
 	@Override
-	public List<CarLot> viewAllCarsOnLot() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarLot> viewAllCarsOnLot() throws BusinessException, EmptyQueryException {
+		List<CarLot> carsOnLotNotOwned = new ArrayList<>();;
+		connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		CarLot carLot;
+		try {
+			connection = PostgresqlConnection.getConnection();
+			final String sql = "SELECT car_id, is_owned, user_id, car_maker, car_type, car_model, car_color, car_year, is_new, odometer_reading, price::money::numeric::float8 FROM mydealership.car_lot;";
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				carLot = new CarLot();
+				carLot.setCarId(resultSet.getInt("car_id"));
+				carLot.setCarMaker(resultSet.getString("car_maker"));
+				carLot.setCarType(resultSet.getString("car_type"));
+				carLot.setCarModel(resultSet.getString("car_model"));
+				carLot.setCarColor(resultSet.getString("car_color"));
+				carLot.setCarYear(resultSet.getString("car_year"));
+				carLot.setNew(resultSet.getBoolean("is_new"));
+				carLot.setOdometerReading(resultSet.getInt("odometer_reading"));
+				carLot.setPrice(resultSet.getFloat("price"));
+				carsOnLotNotOwned.add(carLot);
+				}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+				resultSet.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return carsOnLotNotOwned;
 	}
 
 	@Override

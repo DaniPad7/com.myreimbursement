@@ -11,7 +11,7 @@ import com.mydealership.model.UsersTransactionHistory;
 
 public interface DealershipViewDAO {
 	public UserCorpInfo login(String username, String password) throws NullInfoException, EmptyQueryException;
-	public List<CarLot> viewAllCarsOnLot() throws BusinessException;
+	public List<CarLot> viewAllCarsOnLot() throws BusinessException, EmptyQueryException;
 	public List<CarLot> viewOwnedCars(int userId) throws BusinessException;
 	public List<UsersTransactionHistory> viewRemainingPayments(int userId, int carId) throws BusinessException;
 	public List<UsersTransactionHistory> viewAllCustomerPayments(String username) throws BusinessException;

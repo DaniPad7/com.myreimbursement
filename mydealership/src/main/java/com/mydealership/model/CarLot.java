@@ -190,10 +190,12 @@ public class CarLot {
 
 	@Override
 	public String toString() {
-		return "CarLot [carId=" + carId + ", isOwned=" + isOwned + ", userId=" + userId + ", carMaker=" + carMaker
-				+ ", carType=" + carType + ", carModel=" + carModel + ", carColor=" + carColor + ", carYear=" + carYear
-				+ ", isNew=" + isNew + ", odometerReading=" + odometerReading + ", price=" + price + "]";
+		return "CarLot [Vehicle #" + carId + ", Maker =" + carMaker + ", Type =" + carType + ", Model =" + carModel
+				+ ", Color =" + carColor + ", Year =" + carYear + ", New =" + isNew + ", Odometer Reading ="
+				+ odometerReading + ", Price =" + price + "]";
 	}
+
+	
 
 	
 	

@@ -40,10 +40,12 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 				break;
 				
 			case 2:
+				
 				log.info("This option is under construction.");
 				break;
 				
 			case 3:
+				//case 3 will need vehicle option by something
 				log.info("This option is under construction.");
 				break;
 				

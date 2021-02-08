@@ -15,9 +15,10 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 	public static Logger log = Logger.getLogger(UserFinanceInfoFactoryImpl.class);
 	public Scanner scanner = new Scanner(System.in);
 	UserFinanceInfo userFinanceInfo;
+	Date date;
 
 	@Override
-	public void setUserFinanceInfo() throws BusinessException {
+	public void setUserFinanceInfo(int userId, int carId) throws BusinessException {
 		this.userFinanceInfo = new UserFinanceInfo();
 		int isReady0 = 0;
 		do {
@@ -32,17 +33,12 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 				int runSwitch0 = 1;
 				int i = 0;
 				switch(runSwitch0) {
-				//userFinanceInfo.setAccepted(false);
 				
-				//do a get of the car lot for the car id. probably store in main
-				//log.info("Doing something with car id");
-				
-				//log.info("Doing something with user_id ");
-				// do a get for user personal info for user id. probably store in main, nothing can be null
-				
-				//log.info("Do something with Date where it is automated.");
-				// use date util most likely
 				case 1:
+					userFinanceInfo.setAccepted(false);
+					userFinanceInfo.setUserId(userId);
+					userFinanceInfo.setCarId(carId);
+					userFinanceInfo.setOfferDate(Date.valueOf("0000-00-00"));
 					while(i < 1) {
 						log.info("Enter your Principal loan amount: ");
 						float principalValidator = Float.parseFloat(scanner.nextLine());
