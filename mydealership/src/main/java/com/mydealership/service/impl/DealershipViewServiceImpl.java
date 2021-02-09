@@ -12,6 +12,7 @@ import com.mydealership.exception.EmptyQueryException;
 import com.mydealership.exception.NullInfoException;
 import com.mydealership.model.CarLot;
 import com.mydealership.model.UserCorpInfo;
+import com.mydealership.model.UserFinanceInfo;
 import com.mydealership.model.UsersTransactionHistory;
 import com.mydealership.service.DealershipViewService;
 import com.mydealership.service.util.factory.impl.UserFinanceInfoFactoryImpl;
@@ -37,9 +38,7 @@ public class DealershipViewServiceImpl implements DealershipViewService {
 	public List<CarLot> viewAllCarsOnLot() throws BusinessException, EmptyQueryException {
 		List<CarLot> carsOnLotNotOwned = new ArrayList<>();
 		carsOnLotNotOwned = dealershipViewDAO.viewAllCarsOnLot();
-		for(CarLot car : carsOnLotNotOwned) {
-			carsOnLotNotOwned.removeIf(c -> car.isOwned() == true);
-			}
+		carsOnLotNotOwned.removeIf(car -> car.isOwned() == true);
 		if(carsOnLotNotOwned.size() < 1) {
 			throw new EmptyQueryException("No data found");
 		}
@@ -48,23 +47,71 @@ public class DealershipViewServiceImpl implements DealershipViewService {
 		}
 		return carsOnLotNotOwned;
 	}
-
+	
 	@Override
-	public List<CarLot> viewOwnedCars(int userId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarLot> viewUnownedCarsOnLot() throws BusinessException, EmptyQueryException {
+		List<CarLot> carsNotOwned = new ArrayList<>();
+		carsNotOwned = dealershipViewDAO.viewUnownedCarsOnLot();
+		if(carsNotOwned.size() < 1) {
+			throw new EmptyQueryException("No data found");
+		}
+		else {
+			log.info(carsNotOwned);
+		}
+		return carsNotOwned;
 	}
 
 	@Override
-	public List<UsersTransactionHistory> viewRemainingPayments(int userId, int carId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarLot> viewOwnedCars(int userId) throws BusinessException, EmptyQueryException {
+		List<CarLot> ownedCars = new ArrayList<>();
+		ownedCars = dealershipViewDAO.viewOwnedCars(userId);
+		if(ownedCars.size() < 1) {
+			throw new EmptyQueryException("No data found");
+		}
+		else {
+			log.info(ownedCars);
+		}
+		return ownedCars;
+	}
+	
+	@Override
+	public List<UserFinanceInfo> viewAllOffers() throws BusinessException, EmptyQueryException {
+		List<UserFinanceInfo> offersNotAccepted = new ArrayList<>();
+		offersNotAccepted = dealershipViewDAO.viewAllOffers();
+		offersNotAccepted.removeIf(offer -> offer.isAccepted() == true);
+		if(offersNotAccepted.size() < 1) {
+			throw new EmptyQueryException("No data found");
+		}
+		else {
+			log.info(offersNotAccepted);
+		}
+		return offersNotAccepted;
 	}
 
 	@Override
-	public List<UsersTransactionHistory> viewAllCustomerPayments(String username) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UsersTransactionHistory> viewRemainingPayments(int userId, int carId) throws BusinessException, EmptyQueryException {
+		List<UsersTransactionHistory> carRemainingPayments = new ArrayList<>();
+		carRemainingPayments = dealershipViewDAO.viewRemainingPayments(userId, carId);
+		if(carRemainingPayments.size() < 1) {
+			throw new EmptyQueryException("No data found");
+		}
+		else {
+			log.info(carRemainingPayments);
+		}
+		return carRemainingPayments;
+	}
+
+	@Override
+	public List<UsersTransactionHistory> viewAllCustomerPayments(String firstName, String lastName) throws BusinessException, EmptyQueryException {
+		List<UsersTransactionHistory> customerTransactions = new ArrayList<>();
+		customerTransactions = dealershipViewDAO.viewAllCustomerPayments(firstName, lastName);
+		if(customerTransactions.size() < 1) {
+			throw new EmptyQueryException("No data found");
+		}
+		else {
+			log.info(customerTransactions);
+		}
+		return customerTransactions;
 	}
 
 	@Override
@@ -72,5 +119,9 @@ public class DealershipViewServiceImpl implements DealershipViewService {
 		// TODO Auto-generated method stub
 
 	}
+
+	
+
+	
 
 }

@@ -13,6 +13,7 @@ import com.mydealership.model.CarLot;
 import com.mydealership.model.UserCorpInfo;
 import com.mydealership.model.UserFinanceInfo;
 import com.mydealership.model.UserPersonalInfo;
+import com.mydealership.model.UsersTransactionHistory;
 
 public class DealershipInsertDAOImpl implements DealershipInsertDAO {
 	private static Connection connection; 
@@ -25,7 +26,6 @@ public class DealershipInsertDAOImpl implements DealershipInsertDAO {
 		int registered1 = 0;
 		connection = null;
 		PreparedStatement preparedStatement = null;
-		
 		try {
 			connection = PostgresqlConnection.getConnection();
 			final String sql0 = "INSERT INTO mydealership.user_personal_info(user_id, first_name, last_name, birth_date, email, phone_number, address, city, state, zip_code, country) "
@@ -64,9 +64,35 @@ public class DealershipInsertDAOImpl implements DealershipInsertDAO {
 	}
 
 	@Override
-	public int makeCarOffer(UserFinanceInfo userFinanceInfo) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int makeCarOffer(UserFinanceInfo userFinanceInfo) throws BusinessException, NullInfoException {
+		int registered = 0;
+		connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = PostgresqlConnection.getConnection();
+			final String sql = "insert into mydealership.user_finance__info (offer_id, user_id_ph, car_id, principal_loan, loan_length, apr, credit_score, is_accepted, offer_date) \r\n"
+					+ "VALUES(default, ?, ?, ?::float8::numeric::money, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, userFinanceInfo.getUserId());
+			preparedStatement.setInt(2, userFinanceInfo.getCarId());
+			preparedStatement.setFloat(3, userFinanceInfo.getPrincipalLoan());
+			preparedStatement.setInt(4, userFinanceInfo.getLoanLength());
+			preparedStatement.setDouble(5, userFinanceInfo.getApr());
+			preparedStatement.setInt(6, userFinanceInfo.getCreditScore());
+			preparedStatement.setBoolean(7, userFinanceInfo.isAccepted());
+			preparedStatement.setDate(8, userFinanceInfo.getOfferDate());
+			registered = preparedStatement.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return registered;
 	}
 
 	@Override
@@ -88,6 +114,38 @@ public class DealershipInsertDAOImpl implements DealershipInsertDAO {
 			preparedStatement.setBoolean(7, carLot.isNew());
 			preparedStatement.setInt(8, carLot.getOdometerReading());
 			preparedStatement.setFloat(9, carLot.getPrice());
+			registered = preparedStatement.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return registered;
+	}
+
+	@Override
+	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException {
+		int registered = 0;
+		connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = PostgresqlConnection.getConnection();
+			final String sql = "INSERT INTO mydealership.users_transaction_history(transaction_id, user_id, car_id, amount, remaining_balance, next_payment, transaction_date, payments_left) "
+					+ "VALUES (DEFAULT, ?, ?, ?::float8::numeric::money, ?::float8::numeric::money, ?::float8::numeric::money, ?, ?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, usersTransactionHistory.getUserId());
+			preparedStatement.setInt(2, usersTransactionHistory.getCarId());
+			preparedStatement.setFloat(3, usersTransactionHistory.getAmount());
+			preparedStatement.setFloat(4, usersTransactionHistory.getRemainingBalance());
+			preparedStatement.setFloat(5, usersTransactionHistory.getNextPayment());
+			preparedStatement.setDate(6, usersTransactionHistory.getTransactionDate());
+			preparedStatement.setInt(7, usersTransactionHistory.getPaymentsLeft());
 			registered = preparedStatement.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {

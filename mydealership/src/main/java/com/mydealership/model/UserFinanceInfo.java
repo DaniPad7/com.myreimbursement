@@ -156,9 +156,9 @@ public class UserFinanceInfo {
 
 	@Override
 	public String toString() {
-		return "UserFinanceInfo [offerId=" + offerId + ", carId=" + carId + ", userId=" + userId + ", principalLoan="
-				+ principalLoan + ", loanLength=" + loanLength + ", apr=" + apr + ", creditScore=" + creditScore
-				+ ", isAccepted=" + isAccepted + ", offerDate=" + offerDate + "]";
+		return "UserFinanceInfo [Offer #" + offerId + ", Car #" + carId + ", User ID = " + userId + ", Principal Loan = "
+				+ principalLoan + ", Loan Length = " + loanLength + ", APR = " + apr + ", Credit Score = " + creditScore
+				+ ", isAccepted = " + isAccepted + ", Offer Date = " + offerDate + "]" + "\n" ;
 	}
 	
 	

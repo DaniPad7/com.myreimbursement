@@ -12,15 +12,37 @@ public class DealershipDeletionDAOImpl implements DealershipDeletionDAO {
 	private static Connection connection;
 
 	@Override
-	public void deleteCarFromLot() throws BusinessException {
-		// TODO Auto-generated method stub
-
+	public void deleteCarFromLot(int carId) throws BusinessException {
+		connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = PostgresqlConnection.getConnection();
+			final String sql = "delete from mydealership.car_lot where car_id = ?;";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, carId);
+			preparedStatement.executeUpdate();
+			connection.close();
+			preparedStatement.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void deleteOffersForOwnedCar() throws BusinessException {
-		// TODO Auto-generated method stub
-
+	public void deleteOffersForOwnedCar(int offerId) throws BusinessException {
+		connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = PostgresqlConnection.getConnection();
+			final String sql = "delete from mydealership.user_finance__info where car_id in (select car_id from mydealership.user_finance__info where offer_id = ?) and is_accepted = false;";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, offerId);
+			preparedStatement.executeUpdate();
+			connection.close();
+			preparedStatement.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

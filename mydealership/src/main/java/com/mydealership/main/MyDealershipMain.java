@@ -36,7 +36,7 @@ public class MyDealershipMain {
 		DealershipViewService dealershipViewService = new DealershipViewServiceImpl();
 		
 		PersonalInfoFactory userPersonalInfoFactory = new UserPersonalInfoFactoryImpl();
-		UserFinanceInfoFactory userFinancefactoryImpl = new UserFinanceInfoFactoryImpl();
+		//UserFinanceInfoFactory userFinancefactoryImpl = new UserFinanceInfoFactoryImpl();
 		LoginFactory loginFactoryImpl = new LoginFactoryImpl();
 		CustomerFunctionsFactory customerFunctionsFactoryImpl = new CustomerFunctionsFactoryImpl();
 		EmployeeFunctionsFactory employeeFunctionsFactory = new EmployeeFunctionsFactoryImpl();

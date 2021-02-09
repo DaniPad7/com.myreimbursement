@@ -11,6 +11,7 @@ import com.mydealership.model.CarLot;
 import com.mydealership.model.UserCorpInfo;
 import com.mydealership.model.UserFinanceInfo;
 import com.mydealership.model.UserPersonalInfo;
+import com.mydealership.model.UsersTransactionHistory;
 import com.mydealership.service.DealershipInsertService;
 
 public class DealershipInsertServiceImpl implements DealershipInsertService{
@@ -37,9 +38,21 @@ public class DealershipInsertServiceImpl implements DealershipInsertService{
 	}
 
 	@Override
-	public int makeCarOffer(UserFinanceInfo userFinanceInfo) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int makeCarOffer(UserFinanceInfo userFinanceInfo) throws BusinessException, NullInfoException {
+		int registered = 0;
+		if((userFinanceInfo.getApr() != 0f && userFinanceInfo.getCreditScore() != 0 && userFinanceInfo.getLoanLength() != 0 && userFinanceInfo.getPrincipalLoan() != 0) && userFinanceInfo != null) {
+			registered = dealershipInsertDAO.makeCarOffer(userFinanceInfo);
+			if(registered == 1) {
+				log.info("Offer registered successfully.");
+			}
+			else {
+				log.info("Vehicle offer failed to register.");
+			}
+		}
+		else {
+			throw new NullInfoException("Invalid data in the input. Please try again.");
+		}
+		return registered;
 	}
 
 	@Override
@@ -58,6 +71,13 @@ public class DealershipInsertServiceImpl implements DealershipInsertService{
 			throw new NullInfoException("Invalid data in the input. Please try again.");
 		}
 		
+		return registered;
+	}
+
+	@Override
+	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException {
+		int registered = 0;
+		registered = dealershipInsertDAO.createFirstTransaction(usersTransactionHistory);
 		return registered;
 	}
 	

@@ -23,7 +23,7 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 		int isReady0 = 0;
 		do {
 			log.info("_____________Welcome Customer___________");
-			log.info("1) Enter Finance Information");
+			log.info("1) Enter Finance Information for Car # " + carId);
 			log.info("65) Back");
 			try {
 				isReady0 = Integer.parseInt(scanner.nextLine());
@@ -38,7 +38,7 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 					userFinanceInfo.setAccepted(false);
 					userFinanceInfo.setUserId(userId);
 					userFinanceInfo.setCarId(carId);
-					userFinanceInfo.setOfferDate(Date.valueOf("0000-00-00"));
+					userFinanceInfo.setOfferDate(Date.valueOf("2005-05-05"));
 					while(i < 1) {
 						log.info("Enter your Principal loan amount: ");
 						float principalValidator = Float.parseFloat(scanner.nextLine());
@@ -56,19 +56,19 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 					while(i < 2) {
 						log.info("Enter your Loan Length: ");
 						userFinanceInfo.setLoanLength(Integer.parseInt(scanner.nextLine()));
-						if(userFinanceInfo.getLoanLength() < 1 || userFinanceInfo.getLoanLength() > 84) {
+						if(userFinanceInfo.getLoanLength() > 11 && userFinanceInfo.getLoanLength() < 85) {
 							i = 2;
 						}
 						else {
-							log.info("Choose between 1 and 84 months. Please try again.");
+							log.info("Choose any between 12 and 84 months. Please try again.");
 						}
 					}
 						
 				case 3:
 					while(i < 3) {
-						log.info("Enter your Loan Length: ");
+						log.info("Enter your CreditScore: ");
 						userFinanceInfo.setCreditScore(Integer.parseInt(scanner.nextLine()));
-						if(userFinanceInfo.getCreditScore() < 1 || userFinanceInfo.getCreditScore() > 850) {
+						if(userFinanceInfo.getCreditScore() > 1 && userFinanceInfo.getCreditScore() < 851) {
 							i = 3;
 						}
 						else {
@@ -80,8 +80,8 @@ public class UserFinanceInfoFactoryImpl implements UserFinanceInfoFactory{
 					while(i < 4) {
 						log.info("Your APR will be: ");
 						FinanceCalculator calc = new FinanceCalculatorImpl();
-						double apr = calc.getAPR(userFinanceInfo.getPrincipalLoan(), userFinanceInfo.getLoanLength(), userFinanceInfo.getCreditScore());
-						log.info(apr);
+						userFinanceInfo.setApr(calc.getAPR(userFinanceInfo.getPrincipalLoan(), userFinanceInfo.getLoanLength(), userFinanceInfo.getCreditScore()));
+						log.info(userFinanceInfo.getApr());
 							i = 4;
 							isReady0 = 65;
 						}	
