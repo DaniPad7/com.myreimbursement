@@ -9,13 +9,15 @@ import com.mydealership.dao.DealershipDeletionDAO;
 import com.mydealership.dao.DealershipSetUpdateDAO;
 import com.mydealership.dao.dbutil.PostgresqlConnection;
 import com.mydealership.exception.BusinessException;
+import com.mydealership.exception.EmptyQueryException;
+import com.mydealership.exception.NullInfoException;
 
 public class DealershipSetUpdateDAOImpl implements DealershipSetUpdateDAO {
 	private static Connection connection;
 	
 
 	@Override
-	public int setOfferApproval(int offerId) throws BusinessException {
+	public int setOfferApproval(int offerId) throws BusinessException, EmptyQueryException, NullInfoException {
 		int updated = 0;
 		connection = null;
 		PreparedStatement preparedStatement = null;

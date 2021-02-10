@@ -27,7 +27,7 @@ public class CustomerFunctionsFactoryImpl implements CustomerFunctionsFactory {
 	UserFinanceInfoFactory userFinanceInfoFactory = new UserFinanceInfoFactoryImpl();
 
 	@Override
-	public void customerFunctions(int userId) throws BusinessException, EmptyQueryException, NullInfoException {
+	public void customerFunctions(int userId) throws BusinessException, NullInfoException {
 		List<CarLot> storedCarsOnLot = new ArrayList<>();
 		List<CarLot> ownedCars = new ArrayList<>();
 		int isReady0 = 0;
@@ -46,7 +46,7 @@ public class CustomerFunctionsFactoryImpl implements CustomerFunctionsFactory {
 			case 1:
 				try {
 					storedCarsOnLot = dealershipViewService.viewAllCarsOnLot();
-				} catch (BusinessException | EmptyQueryException e) {
+				} catch (EmptyQueryException e) {
 					log.info(e.getMessage());
 				}
 				break;
@@ -114,7 +114,7 @@ public class CustomerFunctionsFactoryImpl implements CustomerFunctionsFactory {
 			case 3:
 				try {
 					ownedCars = dealershipViewService.viewOwnedCars(userId);
-				} catch (BusinessException | EmptyQueryException e) {
+				} catch (EmptyQueryException e) {
 					log.info(e.getMessage());
 				}
 				break;
@@ -146,7 +146,11 @@ public class CustomerFunctionsFactoryImpl implements CustomerFunctionsFactory {
 								default:
 									for(CarLot car : ownedCars) {
 										if(car.getCarId() == carNumber2) {
-											dealershipViewService.viewRemainingPayments(userId, car.getCarId());
+											try {
+												dealershipViewService.viewRemainingPayments(userId, car.getCarId());
+											} catch (EmptyQueryException e) {
+												log.info(e.getMessage());
+											}
 											carFound = 1;
 											carNumber2 = -1;
 										}

@@ -13,11 +13,11 @@ public class FinanceCalculatorImpl implements FinanceCalculator{
 	// this can be upgraded
 
 	@Override
-	public double getAPR( float principal, int loanLength, int creditScore)
+	public double getAPR(float principal, int loanLength, int creditScore)
 			throws BusinessException {
 		float fees = 1500;
-		float interest = (float) (0.09/ (creditScore - 1)) * principal;
-		double apr = (double) (((fees + interest)/(loanLength * principal)) * (365/30) * 100);
+		float interest = (float) (0.09/ (creditScore + 1)) * principal;
+		double apr = (double) (((fees + interest)/((loanLength * principal) + 1)) * (365/30) * 100);
 		return apr;
 	}
 
@@ -45,7 +45,7 @@ public class FinanceCalculatorImpl implements FinanceCalculator{
 	@Override
 	public float getOfferNextPayment(int offerId) throws BusinessException, EmptyQueryException {
 		float nextPayment = 0;
-		nextPayment = (financeRetriever.viewAcceptedOffer(offerId).getPrincipalLoan()/financeRetriever.viewAcceptedOffer(offerId).getLoanLength());
+		nextPayment = (financeRetriever.viewAcceptedOffer(offerId).getPrincipalLoan()/(financeRetriever.viewAcceptedOffer(offerId).getLoanLength() + 1));
 		return nextPayment;
 	}
 

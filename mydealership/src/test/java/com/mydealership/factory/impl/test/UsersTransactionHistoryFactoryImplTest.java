@@ -4,17 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class UserFinaceInfoFactoryImplTest {
+public class UsersTransactionHistoryFactoryImplTest {
 /*
 	@Test
-	public void testSetUserFinanceInfo() {
+	public void testSetUsersTransactionHistory() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetUserFinanceInfo() {
+	public void testGetUsersTransactionHistory() {
 		fail("Not yet implemented");
 	}
-*/	
-
+*/
 }

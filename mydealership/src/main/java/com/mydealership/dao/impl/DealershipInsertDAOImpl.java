@@ -130,7 +130,7 @@ public class DealershipInsertDAOImpl implements DealershipInsertDAO {
 	}
 
 	@Override
-	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException {
+	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException, NullInfoException {
 		int registered = 0;
 		connection = null;
 		PreparedStatement preparedStatement = null;

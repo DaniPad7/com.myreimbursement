@@ -75,9 +75,13 @@ public class DealershipInsertServiceImpl implements DealershipInsertService{
 	}
 
 	@Override
-	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException {
+	public int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException, NullInfoException {
 		int registered = 0;
-		registered = dealershipInsertDAO.createFirstTransaction(usersTransactionHistory);
+		if(usersTransactionHistory.getTransactionDate() != null) {
+			registered = dealershipInsertDAO.createFirstTransaction(usersTransactionHistory);
+		}else {
+			throw new NullInfoException("Invalid data in the input. Please try again.");
+		}
 		return registered;
 	}
 	

@@ -13,6 +13,6 @@ public interface DealershipInsertDAO {
 	public int registerCustomerAccount(UserPersonalInfo userPersonalInfo, UserCorpInfo userCorporateInfo) throws BusinessException, NullInfoException;
 	public int makeCarOffer(UserFinanceInfo userFinanceInfo) throws BusinessException, NullInfoException;
 	public int addCar(CarLot carLot) throws BusinessException, NullInfoException;
-	int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException;
+	int createFirstTransaction(UsersTransactionHistory usersTransactionHistory) throws BusinessException, NullInfoException;
 
 }

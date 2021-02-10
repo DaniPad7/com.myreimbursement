@@ -34,7 +34,7 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 	CarLotFactory carLotFactoryImpl = new CarLotFactoryImpl();
 
 	@Override
-	public void employeeFunctions(int userId) throws BusinessException, NullInfoException, EmptyQueryException {
+	public void employeeFunctions(int userId) throws BusinessException, NullInfoException {
 		int isReady0 = 0;
 		//do a get method here with user id for name
 		do {
@@ -66,7 +66,11 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 					}catch(NumberFormatException e) {}
 					switch(viewOrUpdate) {
 					case 1:
-						offersNotAccepted = dealershipViewService.viewAllOffers();
+						try {
+							offersNotAccepted = dealershipViewService.viewAllOffers();
+						} catch (EmptyQueryException e1) {
+							log.info(e1.getMessage());
+						}
 						break;
 					case 2:
 						if(offersNotAccepted.size() > 0) {
@@ -96,7 +100,11 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 										default:
 											for(UserFinanceInfo ufi : offersNotAccepted) {
 												if(ufi.getOfferId() == offerNumber) {
-													updated = dealershipSetUpdateService.setOfferApproval(ufi.getOfferId());
+													try {
+														updated = dealershipSetUpdateService.setOfferApproval(ufi.getOfferId());
+													} catch (EmptyQueryException e) {
+														log.info(e.getMessage());
+													}
 													updated1 = dealershipSetUpdateService.setCarOwnership(ufi.getOfferId());
 													offerNumber = -1;
 												}
@@ -149,7 +157,11 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 					}catch(NumberFormatException e) {}
 					switch(viewOrDelete0) {
 					case 1:
-						carsNotOwned = dealershipViewService.viewUnownedCarsOnLot();
+						try {
+							carsNotOwned = dealershipViewService.viewUnownedCarsOnLot();
+						} catch (EmptyQueryException e1) {
+							log.info(e1.getMessage());
+						}
 						break;
 					case 2:
 						if(carsNotOwned.size() > 0) {
@@ -245,7 +257,11 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 								if(lastValidator.matches("^[a-zA-Z]+$")) {
 									i = 2;
 									findByMany = 85;
-									customerTransactions = dealershipViewService.viewAllCustomerPayments(firstValidator, lastValidator);
+									try {
+										customerTransactions = dealershipViewService.viewAllCustomerPayments(firstValidator, lastValidator);
+									} catch (EmptyQueryException e) {
+										log.info(e.getMessage());
+									}
 								}
 								else {
 									log.info("Invalid input. Please try again.");

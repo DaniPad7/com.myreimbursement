@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CarLotFactoryImplTest {
-
+/*
 	@Test
 	public void testSetCar() {
 		fail("Not yet implemented");
@@ -15,5 +15,5 @@ public class CarLotFactoryImplTest {
 	public void testGetCar() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

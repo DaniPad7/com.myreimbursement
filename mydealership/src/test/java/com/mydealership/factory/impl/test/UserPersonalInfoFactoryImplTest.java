@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class UserPersonalInfoFactoryImplTest {
-
+/*
 	@Test
 	public void testSetUserPersonalInfoAndUserCorpInfo() {
 		fail("Not yet implemented");
@@ -19,5 +19,5 @@ public class UserPersonalInfoFactoryImplTest {
 	public void testGetUserPersonalInfo() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

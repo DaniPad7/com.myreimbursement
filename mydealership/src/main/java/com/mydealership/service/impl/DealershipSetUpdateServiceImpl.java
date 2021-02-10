@@ -10,6 +10,7 @@ import com.mydealership.dao.impl.DealershipInsertDAOImpl;
 import com.mydealership.dao.impl.DealershipSetUpdateDAOImpl;
 import com.mydealership.exception.BusinessException;
 import com.mydealership.exception.EmptyQueryException;
+import com.mydealership.exception.NullInfoException;
 import com.mydealership.service.DealershipSetUpdateService;
 import com.mydealership.service.util.factory.UsersTransactionHistoryFactory;
 import com.mydealership.service.util.factory.impl.UsersTransactionHistoryFactoryImpl;
@@ -23,7 +24,7 @@ public class DealershipSetUpdateServiceImpl implements DealershipSetUpdateServic
 	public UsersTransactionHistoryFactory usersTransactionHistoryFactory = new UsersTransactionHistoryFactoryImpl();
 
 	@Override
-	public int setOfferApproval(int offerId) throws BusinessException, EmptyQueryException {
+	public int setOfferApproval(int offerId) throws BusinessException, EmptyQueryException, NullInfoException {
 		int updated = 0;
 		updated = dealershipSetUpdateDAO.setOfferApproval(offerId);
 		if(updated == 0) {

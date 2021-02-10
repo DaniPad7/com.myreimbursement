@@ -5,6 +5,6 @@ import com.mydealership.exception.EmptyQueryException;
 import com.mydealership.exception.NullInfoException;
 
 public interface EmployeeFunctionsFactory {
-	void employeeFunctions(int userId) throws BusinessException, NullInfoException, EmptyQueryException;
+	void employeeFunctions(int userId) throws BusinessException, NullInfoException;
 
 }
