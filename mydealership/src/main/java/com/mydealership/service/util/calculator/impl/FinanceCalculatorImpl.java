@@ -4,11 +4,13 @@ import java.sql.Date;
 
 import com.mydealership.exception.BusinessException;
 import com.mydealership.exception.EmptyQueryException;
+import com.mydealership.model.UserFinanceInfo;
 import com.mydealership.service.util.calculator.FinanceCalculator;
 import com.mydealership.service.util.calculator.FinanceRetriever;
 
 public class FinanceCalculatorImpl implements FinanceCalculator{
 	private FinanceRetriever financeRetriever = new FinanceRetrieverImpl();
+	private UserFinanceInfo financeRetrieved = new UserFinanceInfo();
 	
 	// this can be upgraded
 
@@ -24,7 +26,8 @@ public class FinanceCalculatorImpl implements FinanceCalculator{
 	@Override
 	public int getOfferCarId(int offerId) throws BusinessException, EmptyQueryException {
 		int carId = 0;
-		carId = financeRetriever.viewAcceptedOffer(offerId).getCarId();
+		financeRetrieved = financeRetriever.viewAcceptedOffer(offerId);
+		carId = financeRetrieved.getCarId();
 		return carId;
 	}
 

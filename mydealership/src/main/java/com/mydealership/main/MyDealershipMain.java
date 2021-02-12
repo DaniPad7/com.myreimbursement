@@ -88,7 +88,7 @@ public class MyDealershipMain {
 					}
 				}while(starterOption != 26);
 		scanner.close();
-
+//Date.valueOf(LocalDate.now())
 	}
 
 }

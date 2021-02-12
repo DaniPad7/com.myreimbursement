@@ -43,20 +43,28 @@ public class DealershipSetUpdateDAOImpl implements DealershipSetUpdateDAO {
 	@Override
 	public int setCarOwnership(int offerId) throws BusinessException {
 		int updated1 = 0;
+		int updated2 = 0;
 		connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement1 = null;
 		try {
 			connection = PostgresqlConnection.getConnection();
 			final String sql = "update mydealership.car_lot set is_owned = true where car_id in (select car_id from mydealership.user_finance__info where offer_id = ?);";
+			final String sql1 = "update mydealership.car_lot set user_id = (select user_id_ph from mydealership.user_finance__info where offer_id = ?) where car_id in (select car_id from mydealership.user_finance__info where offer_id = ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, offerId);
 			updated1 = preparedStatement.executeUpdate();
+			preparedStatement1 = connection.prepareStatement(sql1);
+			preparedStatement1.setInt(1, offerId);
+			preparedStatement1.setInt(2, offerId);
+			updated2 = preparedStatement1.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 				preparedStatement.close();
+				preparedStatement1.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

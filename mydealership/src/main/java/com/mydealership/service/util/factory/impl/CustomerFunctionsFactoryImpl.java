@@ -180,7 +180,7 @@ public class CustomerFunctionsFactoryImpl implements CustomerFunctionsFactory {
 				}
 				
 			case 95:
-				log.info("You signed out.");
+				log.info("Redirected back.");
 				break;
 				
 			default:

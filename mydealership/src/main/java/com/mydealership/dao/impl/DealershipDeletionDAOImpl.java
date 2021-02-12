@@ -34,7 +34,7 @@ public class DealershipDeletionDAOImpl implements DealershipDeletionDAO {
 		PreparedStatement preparedStatement = null;
 		try {
 			connection = PostgresqlConnection.getConnection();
-			final String sql = "delete from mydealership.user_finance__info where car_id in (select car_id from mydealership.user_finance__info where offer_id = ?) and is_accepted = false;";
+			final String sql = "delete from mydealership.user_finance__info where is_accepted = false and car_id in (select car_id from mydealership.user_finance__info where offer_id = ?);";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, offerId);
 			preparedStatement.executeUpdate();

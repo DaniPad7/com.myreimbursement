@@ -14,11 +14,11 @@ public class UsersTransactionHistoryFactoryImpl implements UsersTransactionHisto
 	private FinanceCalculator financeCalculator = new FinanceCalculatorImpl();
 // can be updated and upgraded
 	@Override
-	public void setUsersTransactionHistory(int offerId) throws BusinessException, EmptyQueryException {
+	public void setUsersTransactionHistory(int offerId) throws BusinessException, EmptyQueryException, NullPointerException {
 		int automaticSet = 1;
 		switch(automaticSet) {
 		case 1:
-			usersTransactionHistory.setCarId(financeCalculator.getOfferCarId(offerId));
+			//usersTransactionHistory.setCarId(financeCalculator.getOfferCarId(offerId));
 			usersTransactionHistory.setUserId(financeCalculator.getOfferUserid(offerId));
 			usersTransactionHistory.setAmount(0);
 			usersTransactionHistory.setRemainingBalance(financeCalculator.getOfferRemainingBalance(offerId));

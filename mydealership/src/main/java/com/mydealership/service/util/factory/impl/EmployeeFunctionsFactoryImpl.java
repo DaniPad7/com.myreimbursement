@@ -22,6 +22,7 @@ import com.mydealership.service.impl.DealershipSetUpdateServiceImpl;
 import com.mydealership.service.impl.DealershipViewServiceImpl;
 import com.mydealership.service.util.factory.CarLotFactory;
 import com.mydealership.service.util.factory.EmployeeFunctionsFactory;
+import com.mydealership.service.util.factory.UsersTransactionHistoryFactory;
 
 public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 	public static Logger log = Logger.getLogger(UserFinanceInfoFactoryImpl.class);
@@ -32,6 +33,7 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 	DealershipSetUpdateService dealershipSetUpdateService = new DealershipSetUpdateServiceImpl();
 	DealershipDeletionService dealershipDeletionService = new DealershipDeletionServiceImpl();
 	CarLotFactory carLotFactoryImpl = new CarLotFactoryImpl();
+	private UsersTransactionHistoryFactory usersTransactionHistoryFactory = new UsersTransactionHistoryFactoryImpl();
 
 	@Override
 	public void employeeFunctions(int userId) throws BusinessException, NullInfoException {
@@ -102,10 +104,12 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 												if(ufi.getOfferId() == offerNumber) {
 													try {
 														updated = dealershipSetUpdateService.setOfferApproval(ufi.getOfferId());
+														updated1 = dealershipSetUpdateService.setCarOwnership(ufi.getOfferId());
+														//usersTransactionHistoryFactory.setUsersTransactionHistory(ufi.getOfferId()); this here is bugged, nothing wrong with DAOimpl but throws NullPointerException. Check later
+														//dealershipInsertService.createFirstTransaction(usersTransactionHistoryFactory.getUsersTransactionHistory());
 													} catch (EmptyQueryException e) {
 														log.info(e.getMessage());
 													}
-													updated1 = dealershipSetUpdateService.setCarOwnership(ufi.getOfferId());
 													offerNumber = -1;
 												}
 												else {}
@@ -150,7 +154,7 @@ public class EmployeeFunctionsFactoryImpl implements EmployeeFunctionsFactory {
 				do {
 					log.info("__View Unowned vehicles, then Delete vehicle.__");
 					log.info("1) View Unowned Vehicles with no offers");
-					log.info("2) Accept Offers");
+					log.info("2) Delete Vehicle");
 					log.info("5) Back");
 					try {
 						viewOrDelete0 = Integer.parseInt(scanner.nextLine());
