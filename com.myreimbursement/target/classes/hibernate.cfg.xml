@@ -12,7 +12,14 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.hbm2ddl.auto">validate</property>
 		
-		<mapping class="com.myreimbursement.model."/>
+		<mapping class="com.myreimbursement.model.Reasons"/>
+		<mapping class="com.myreimbursement.model.UploadTypes"/>
+		<mapping class="com.myreimbursement.model.UserBusinessInfo"/>
+		<mapping class="com.myreimbursement.model.UserCorpInfo"/>
+		<mapping class="com.myreimbursement.model.UserPersonalInfo"/>
+		<mapping class="com.myreimbursement.model.UserReimAwarded"/>
+		<mapping class="com.myreimbursement.model.UserReimbursement"/>
+		<mapping class="com.myreimbursement.model.UserReimRequests"/>
 
 </session-factory>
 
