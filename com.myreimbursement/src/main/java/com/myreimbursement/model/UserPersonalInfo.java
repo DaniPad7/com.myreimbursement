@@ -1,10 +1,14 @@
 package com.myreimbursement.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,6 +20,16 @@ public class UserPersonalInfo {
 @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.AUTO)
 @SequenceGenerator(allocationSize = 1, name = "user_id_seq", sequenceName = "user_id_seq")
 private int userId;
+@OneToOne(mappedBy = "userId")
+private UserCorpInfo userCorpInfo;
+@OneToMany(mappedBy = "userId")
+private Set<UserBusinessInfo> userBusinessInfos;
+@OneToMany(mappedBy = "reportsTo")
+private Set<UserBusinessInfo> userBusinessInfo;
+@OneToOne(mappedBy = "userId")
+private UserReimbursement userReimbursement;
+@OneToMany(mappedBy = "awardedBy")
+private Set<UserReimAwarded> userReimAwarded;
 @Column(name = "first_name", nullable = false)
 private String firstName;
 @Column(name = "last_name", nullable = false)

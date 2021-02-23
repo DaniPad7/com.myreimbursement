@@ -1,10 +1,13 @@
 package com.myreimbursement.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,6 +19,8 @@ public class UploadTypes {
 	@GeneratedValue(generator = "upload_type_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "upload_type_id_seq", sequenceName = "upload_type_id_seq")
 	private int uploadTypeId;
+	@OneToMany(mappedBy = "uploadTypeId")
+	private Set<UserReimRequests> userReimRequests;
 	@Column(name = "upload_name")
 	private String uploadName;
 	

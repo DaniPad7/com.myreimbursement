@@ -2,9 +2,12 @@ package com.myreimbursement.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,47 +19,61 @@ public class UserBusinessInfo {
 	@GeneratedValue(generator = "business_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "business_id_seq", sequenceName = "business_id_seq")
 	private int businessId;
-	@Column(name = "user_id", nullable = false)
-	private int userId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+	private UserPersonalInfo userId;
 	@Column(name = "department_name", nullable = false)
 	private String departmentName;
 	@Column(nullable = false)
 	private String position;
-	@Column(name = "reports_to", nullable = false)
-	private int reportsTo;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "reports_to", nullable = false, referencedColumnName = "user_id")
+	private UserPersonalInfo reportsTo;
+	
 	public UserBusinessInfo() {
 		super();
 	}
+
 	public int getBusinessId() {
 		return businessId;
 	}
+
 	public void setBusinessId(int businessId) {
 		this.businessId = businessId;
 	}
-	public int getUserId() {
+
+	public UserPersonalInfo getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+
+	public void setUserId(UserPersonalInfo userId) {
 		this.userId = userId;
 	}
+
 	public String getDepartmentName() {
 		return departmentName;
 	}
+
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+
 	public String getPosition() {
 		return position;
 	}
+
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public int getReportsTo() {
+
+	public UserPersonalInfo getReportsTo() {
 		return reportsTo;
 	}
-	public void setReportsTo(int reportsTo) {
+
+	public void setReportsTo(UserPersonalInfo reportsTo) {
 		this.reportsTo = reportsTo;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,10 +81,11 @@ public class UserBusinessInfo {
 		result = prime * result + businessId;
 		result = prime * result + ((departmentName == null) ? 0 : departmentName.hashCode());
 		result = prime * result + ((position == null) ? 0 : position.hashCode());
-		result = prime * result + reportsTo;
-		result = prime * result + userId;
+		result = prime * result + ((reportsTo == null) ? 0 : reportsTo.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -89,17 +107,26 @@ public class UserBusinessInfo {
 				return false;
 		} else if (!position.equals(other.position))
 			return false;
-		if (reportsTo != other.reportsTo)
+		if (reportsTo == null) {
+			if (other.reportsTo != null)
+				return false;
+		} else if (!reportsTo.equals(other.reportsTo))
 			return false;
-		if (userId != other.userId)
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "UserBusinessInfo [businessId=" + businessId + ", userId=" + userId + ", departmentName="
 				+ departmentName + ", position=" + position + ", reportsTo=" + reportsTo + "]";
 	}
+	
+	
 	
 	
 

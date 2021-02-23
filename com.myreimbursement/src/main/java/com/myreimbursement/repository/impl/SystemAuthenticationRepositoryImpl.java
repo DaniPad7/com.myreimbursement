@@ -13,10 +13,10 @@ import com.myreimbursement.repository.SystemAuthenticationRepository;
 public class SystemAuthenticationRepositoryImpl implements SystemAuthenticationRepository{
 
 	@Override
-	public UserCorpInfo login(String email, String password)
+	public int login(String email, String password)
 			throws BusinessException, HibernateException, ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		int idRetriever = 0;
+		return idRetriever;
 	}
 
 	@Override

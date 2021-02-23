@@ -9,22 +9,36 @@ import org.hibernate.HibernateException;
 import com.myreimbursement.exceptions.BusinessException;
 import com.myreimbursement.model.UserReimAwarded;
 import com.myreimbursement.model.UserReimRequests;
+import com.myreimbursement.model.UserReimbursement;
 import com.myreimbursement.service.InsertService;
 
 public class InsertServiceImpl implements InsertService{
 
 	@Override
-	public int submitReimbursementRequest(UserReimRequests userReimRequests)
-			throws BusinessException, HibernateException, ServletException, IOException {
+	public void submitReimbursementRequest(UserReimRequests userReimRequests)
+			throws BusinessException, ServletException, IOException {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	@Override
-	public int createUserReimAwarded(UserReimAwarded userReimAwarded)
-			throws BusinessException, HibernateException, ServletException, IOException {
+	public void createUserReimAwarded(UserReimAwarded userReimAwarded)
+			throws BusinessException, ServletException, IOException {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
+
+	/*@Override
+	public void employeeRegistration() throws BusinessException, ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createUserReimbursement(UserReimbursement userReimbursement)
+			throws BusinessException, ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}*/
 
 }

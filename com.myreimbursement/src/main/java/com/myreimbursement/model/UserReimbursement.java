@@ -1,12 +1,17 @@
 package com.myreimbursement.model;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,8 +23,11 @@ public class UserReimbursement {
 	@GeneratedValue(generator = "reimbursement_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "reimbursement_id_seq", sequenceName = "reimbursement_id_seq")
 	private int reimbursementId;
-	@Column(name = "user_id", unique = true)
-	private int userId;
+	@OneToMany(mappedBy = "requestId")
+	private Set<UserReimRequests> userReimRequests;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", unique = true, referencedColumnName = "user_id")
+	private UserPersonalInfo userId;
 	@Column(name = "available_reimbursement", nullable = false)
 	private float availableReimbursement;
 	@Column(name = "pending_reim")
@@ -44,11 +52,11 @@ public class UserReimbursement {
 		this.reimbursementId = reimbursementId;
 	}
 
-	public int getUserId() {
+	public UserPersonalInfo getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(UserPersonalInfo userId) {
 		this.userId = userId;
 	}
 
@@ -101,7 +109,7 @@ public class UserReimbursement {
 		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
 		result = prime * result + Float.floatToIntBits(pendingReim);
 		result = prime * result + reimbursementId;
-		result = prime * result + userId;
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + yearCycle;
 		return result;
 	}
@@ -128,7 +136,10 @@ public class UserReimbursement {
 			return false;
 		if (reimbursementId != other.reimbursementId)
 			return false;
-		if (userId != other.userId)
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		if (yearCycle != other.yearCycle)
 			return false;
@@ -141,6 +152,8 @@ public class UserReimbursement {
 				+ ", availableReimbursement=" + availableReimbursement + ", pendingReim=" + pendingReim
 				+ ", awardedReim=" + awardedReim + ", dateCreated=" + dateCreated + ", yearCycle=" + yearCycle + "]";
 	}
+
+	
 	
 	
 	
