@@ -1,0 +1,16 @@
+#loginImg {
+  size: unset;
+  width: 400px;
+  border-radius: 700px;
+  float: left;
+  margin-right: 100px;
+}
+
+.username {
+  font-weight: bold;
+  font-style: italic;
+  position: relative;
+}
+
+#logo {
+}
