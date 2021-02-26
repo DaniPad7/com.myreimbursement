@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Dispatcher extends HttpServlet{
 	public ObjectMapper om = new ObjectMapper();
+	private RequestHelper requestHelper =new RequestHelper();
 
 	/**
 	 * 
@@ -20,12 +21,12 @@ public class Dispatcher extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		PrintWriter writer = response.getWriter();	
-		final String JSON = om.writeValueAsString(RequestHelper.processGet(request, response));
+		final String JSON = om.writeValueAsString(requestHelper.processGet(request, response));
 		writer.write(JSON);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		RequestHelper.processPost(request, response);
+		requestHelper.processPost(request, response);
 		
 	}
 		
