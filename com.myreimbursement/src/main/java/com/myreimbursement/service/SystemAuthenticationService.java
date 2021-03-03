@@ -10,7 +10,7 @@ import com.myreimbursement.exceptions.BusinessException;
 import com.myreimbursement.model.UserCorpInfo;
 
 public interface SystemAuthenticationService {
-	int login(String email, String password) throws BusinessException, ServletException, IOException;
+	UserCorpInfo login(String username, String password) throws BusinessException, ServletException, IOException;
 	void logout() throws BusinessException, ServletException, IOException;
 
 }

@@ -21,11 +21,14 @@ public class Dispatcher extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		PrintWriter writer = response.getWriter();	
+		
 		final String JSON = om.writeValueAsString(requestHelper.processGet(request, response));
+		System.out.println("Hello: " + JSON);
 		writer.write(JSON);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
 		requestHelper.processPost(request, response);
 		
 	}

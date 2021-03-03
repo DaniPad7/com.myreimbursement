@@ -35,7 +35,7 @@ public class AuthenticationFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest)request;
+		/*HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
 		HttpSession session = httpRequest.getSession(false);
 		if(session == null) {
@@ -44,7 +44,7 @@ public class AuthenticationFilter implements Filter {
 		}
 		else {
 			chain.doFilter(request, response);
-		}
+		}*/
 	
 	}
 

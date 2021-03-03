@@ -76,7 +76,7 @@ public class ViewRepositoryImpl implements ViewRepository{
 			e.printStackTrace();
 			transaction.rollback();
 		}finally {
-			session.close();
+			//session.close();
 		}
 		return userPersonalInfo;
 	}
@@ -150,13 +150,13 @@ public class ViewRepositoryImpl implements ViewRepository{
 		try {
 			session = HibernateSessionFactory.getSession();
 			transaction = session.beginTransaction();
-			userBusinessInfo = session.createQuery("FROM user_business_info", UserBusinessInfo.class).getResultList();
+			userBusinessInfo = session.createQuery("FROM UserBusinessInfo", UserBusinessInfo.class).getResultList();
 			transaction.commit();
 		}catch(HibernateException e) {
 			e.printStackTrace();
 			transaction.rollback();
 		}finally {
-			session.close();
+			//session.close();
 		}
 		return userBusinessInfo;
 	}

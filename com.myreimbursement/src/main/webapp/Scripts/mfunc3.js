@@ -1,5 +1,5 @@
 function getAllReceipts() {
-    let url = "http://localhost:8080/Dispatcher/api/mfunc3";
+    let url = "http://localhost:8088/com.myreimbursement/Dispatcher/api/mfunc3";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){

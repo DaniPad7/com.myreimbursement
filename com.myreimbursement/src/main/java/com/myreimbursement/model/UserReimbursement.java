@@ -30,9 +30,9 @@ public class UserReimbursement {
 	private UserPersonalInfo userId;
 	@Column(name = "available_reimbursement", nullable = false)
 	private float availableReimbursement;
-	@Column(name = "pending_reim")
+	@Column(name = "pending_reim", nullable = true)
 	private float pendingReim;
-	@Column(name = "awarded_reim")
+	@Column(name = "awarded_reim", nullable = true)
 	private float awardedReim;
 	@Column(name = "date_created")
 	private Date dateCreated;

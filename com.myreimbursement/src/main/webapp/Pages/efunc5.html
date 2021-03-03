@@ -5,25 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>efunc5</title>
-    <link rel="stylesheet" href="/Styles/efunc5.css" />
+    <link rel="stylesheet" href="/com.myreimbursement/Styles/efunc5.css" />
   </head>
   <body>
     <div id="logoRepresentative" role="banner">
-      <img src="/Images/View/rock-tower.jpg" alt="Company logo" />
+      <img
+        src="/com.myreimbursement/Images/View/rock-tower.jpg"
+        alt="Company logo"
+      />
     </div>
-    <div id="logoutFunctionality">
-      <button id="logoutButton" onclick="/Dispatcher/api/logout">Logout</button>
-    </div>
+
     <div>
       <button id="efunc5View" onclick="">Show Information</button>
     </div>
     <div>
-      <thead></thead>
-      <tbody id="infoHere"></tbody>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>E-mail</th>
+            <th>Phone #</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody id="infoHere"></tbody>
+      </table>
     </div>
     <div>
       <a href="ehome.html">Home Page</a>
     </div>
   </body>
-  <script src="/Scripts/efunc5.js"></script>
+  <script src="/com.myreimbursement/Scripts/efunc5.js"></script>
 </html>

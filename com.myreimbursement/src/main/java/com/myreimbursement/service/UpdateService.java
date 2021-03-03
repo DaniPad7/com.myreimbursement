@@ -13,6 +13,6 @@ import com.myreimbursement.model.UserReimRequests;
 public interface UpdateService {
 	void uploadRequestReceiptImage(UserReimRequests userReimRequest) throws BusinessException, ServletException, IOException;
 	void updateOwnInformation(UserPersonalInfo userPersonalInfo) throws BusinessException, ServletException, IOException;
-	void acceptOrDenyOwnEmployeeRequests(int userId, int requestId, UserReimRequests userReimRequests) throws BusinessException, ServletException, IOException;
+	void acceptOrDenyOwnEmployeeRequests(int userId, UserReimRequests userReimRequests) throws BusinessException, ServletException, IOException;
 	//int employeeResetPassword() throws BusinessException, ServletException, IOException;
 }

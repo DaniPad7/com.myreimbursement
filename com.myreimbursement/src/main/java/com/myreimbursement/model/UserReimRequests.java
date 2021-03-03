@@ -35,8 +35,8 @@ public class UserReimRequests {
 	@JoinColumn(name = "upload_type_id", nullable = false, referencedColumnName = "upload_type_id")
 	private UploadTypes uploadTypeId;
 	@Column(nullable = false)
-	private File upload;
-	@Column(nullable = false)
+	private String upload;
+	@Column(nullable = true)
 	private float amount;
 	@Column(name = "is_awarded", nullable = false)
 	private boolean isAwarded;
@@ -87,11 +87,11 @@ public class UserReimRequests {
 		this.uploadTypeId = uploadTypeId;
 	}
 
-	public File getUpload() {
+	public String getUpload() {
 		return upload;
 	}
 
-	public void setUpload(File upload) {
+	public void setUpload(String upload) {
 		this.upload = upload;
 	}
 
@@ -190,6 +190,8 @@ public class UserReimRequests {
 				+ ", upload=" + upload + ", amount=" + amount + ", isAwarded=" + isAwarded + ", requestDate="
 				+ requestDate + "]";
 	}
+
+	
 	
 	
 	

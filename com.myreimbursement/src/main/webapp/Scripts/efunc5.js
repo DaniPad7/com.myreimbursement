@@ -1,9 +1,10 @@
 function getPersonalInformation() {
-    let url = "http://localhost:8080/Dispatcher/api/efunc5";
+    let url = "http://localhost:8088/com.myreimbursement/Dispatcher/api/efunc5";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){
         if(xhr.readyState === 4 && xhr.status === 200){
+            console.log("Object successfully retrieved");
             let personalInformation = JSON.parse(xhr.responseText);
                 let tr = document.createElement('tr');
                 
@@ -18,13 +19,20 @@ function getPersonalInformation() {
 
                 userId.innerHTML = personalInformation["userId"];
                 firstName.innerHTML = personalInformation["firstName"];
-                lastName.innerHTML = personalInformation["lastName"];
+                lastName.innerHTML = personalInformation["lastname"];
                 email.innerHTML = personalInformation["email"];
                 phoneNumber.innerHTML = personalInformation["phoneNumber"];
                 city.innerHTML = personalInformation["city"];
                 state.innerHTML = personalInformation["state"];
                 country.innerHTML = personalInformation["country"];
-
+console.log(userId.innerText);
+console.log(firstName.innerText);
+console.log(lastName.innerText);
+console.log(email.innerText);
+console.log(phoneNumber.innerText);
+console.log(city.innerText);
+console.log(state.innerText);
+console.log(country.innerText);
                 tr.append(userId);
                 tr.append(firstName);
                 tr.append(lastName);
@@ -33,14 +41,14 @@ function getPersonalInformation() {
                 tr.append(city);
                 tr.append(state);
                 tr.append(country);
-
+                tbody.append(tr);
 
             
         }
     }
     xhr.open('GET', url);
     xhr.send();
-
+    
 }
 
 let efunc5View = document.getElementById("efunc5View");

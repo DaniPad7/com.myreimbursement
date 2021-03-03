@@ -1,5 +1,5 @@
 function getPendingRequests() {
-    let url = "http://localhost:8080/Dispatcher/api/efunc3";
+    let url = "http://localhost:8088/com.myreimbursementDispatcher/api/efunc3";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){

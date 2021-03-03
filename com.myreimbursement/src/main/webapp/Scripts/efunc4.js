@@ -1,5 +1,5 @@
 function getAwardedRequests() {
-    let url = "http://localhost:8080/Dispatcher/api/efunc4";
+    let url = "http://localhost:8088/com.myreimbursement/Dispatcher/api/efunc4";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){

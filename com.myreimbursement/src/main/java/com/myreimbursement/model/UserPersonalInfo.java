@@ -33,7 +33,7 @@ private Set<UserReimAwarded> userReimAwarded;
 @Column(name = "first_name", nullable = false)
 private String firstName;
 @Column(name = "last_name", nullable = false)
-private String lastname;
+private String lastName;
 @Column
 private String email;
 @Column(name = "phone_number", nullable = true)
@@ -67,11 +67,11 @@ public void setFirstName(String firstName) {
 }
 
 public String getLastname() {
-	return lastname;
+	return lastName;
 }
 
 public void setLastname(String lastname) {
-	this.lastname = lastname;
+	this.lastName = lastname;
 }
 
 public String getEmail() {
@@ -122,7 +122,7 @@ public int hashCode() {
 	result = prime * result + ((country == null) ? 0 : country.hashCode());
 	result = prime * result + ((email == null) ? 0 : email.hashCode());
 	result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-	result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+	result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 	result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 	result = prime * result + ((state == null) ? 0 : state.hashCode());
 	result = prime * result + userId;
@@ -158,10 +158,10 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!firstName.equals(other.firstName))
 		return false;
-	if (lastname == null) {
-		if (other.lastname != null)
+	if (lastName == null) {
+		if (other.lastName != null)
 			return false;
-	} else if (!lastname.equals(other.lastname))
+	} else if (!lastName.equals(other.lastName))
 		return false;
 	if (phoneNumber == null) {
 		if (other.phoneNumber != null)
@@ -182,7 +182,7 @@ public boolean equals(Object obj) {
 
 @Override
 public String toString() {
-	return "UserPersonalInfo [userId=" + userId + ", firstName=" + firstName + ", lastname=" + lastname + ", email="
+	return "UserPersonalInfo [userId=" + userId + ", firstName=" + firstName + ", lastname=" + lastName + ", email="
 			+ email + ", phoneNumber=" + phoneNumber + ", city=" + city + ", state=" + state + ", country=" + country
 			+ "]";
 }

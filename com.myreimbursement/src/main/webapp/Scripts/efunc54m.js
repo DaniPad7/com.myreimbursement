@@ -1,5 +1,5 @@
 function getPersonalInformation4m() {
-    let url = "http://localhost:8080/Dispatcher/api/efunc5";
+    let url = "http://localhost:8088/com.myreimbursement/Dispatcher/api/efunc5";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){
@@ -18,7 +18,7 @@ function getPersonalInformation4m() {
 
                 userId.innerHTML = personalInformation["userId"];
                 firstName.innerHTML = personalInformation["firstName"];
-                lastName.innerHTML = personalInformation["lastName"];
+                lastName.innerHTML = personalInformation["lastname"];
                 email.innerHTML = personalInformation["email"];
                 phoneNumber.innerHTML = personalInformation["phoneNumber"];
                 city.innerHTML = personalInformation["city"];
@@ -33,7 +33,7 @@ function getPersonalInformation4m() {
                 tr.append(city);
                 tr.append(state);
                 tr.append(country);
-
+tbody.append(tr);
 
             
         }

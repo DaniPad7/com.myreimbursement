@@ -21,7 +21,7 @@ public class UserReimAwarded {
 	@Column(name = "award_id")
 	@GeneratedValue(generator = "award_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "award_id_seq", sequenceName = "award_id_seq")
-	private int award_id;
+	private int awardId;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "request_id", unique = true, referencedColumnName = "request_id")
 	private UserReimRequests requestId;
@@ -38,11 +38,11 @@ public class UserReimAwarded {
 	}
 
 	public int getAward_id() {
-		return award_id;
+		return awardId;
 	}
 
 	public void setAward_id(int award_id) {
-		this.award_id = award_id;
+		this.awardId = award_id;
 	}
 
 	public UserReimRequests getRequestId() {
@@ -83,7 +83,7 @@ public class UserReimAwarded {
 		int result = 1;
 		result = prime * result + Float.floatToIntBits(awardAmount);
 		result = prime * result + ((awardDate == null) ? 0 : awardDate.hashCode());
-		result = prime * result + award_id;
+		result = prime * result + awardId;
 		result = prime * result + ((awardedBy == null) ? 0 : awardedBy.hashCode());
 		result = prime * result + ((requestId == null) ? 0 : requestId.hashCode());
 		return result;
@@ -105,7 +105,7 @@ public class UserReimAwarded {
 				return false;
 		} else if (!awardDate.equals(other.awardDate))
 			return false;
-		if (award_id != other.award_id)
+		if (awardId != other.awardId)
 			return false;
 		if (awardedBy == null) {
 			if (other.awardedBy != null)
@@ -122,7 +122,7 @@ public class UserReimAwarded {
 
 	@Override
 	public String toString() {
-		return "UserReimAwarded [award_id=" + award_id + ", requestId=" + requestId + ", awardAmount=" + awardAmount
+		return "UserReimAwarded [award_id=" + awardId + ", requestId=" + requestId + ", awardAmount=" + awardAmount
 				+ ", awardedBy=" + awardedBy + ", awardDate=" + awardDate + "]";
 	}
 	

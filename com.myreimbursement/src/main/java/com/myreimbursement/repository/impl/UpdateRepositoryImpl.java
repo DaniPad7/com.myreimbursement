@@ -55,7 +55,7 @@ public class UpdateRepositoryImpl implements UpdateRepository{
 	}
 
 	@Override
-	public void acceptOrDenyOwnEmployeeRequests(int userId, int requestId, UserReimRequests userReimRequests)
+	public void acceptOrDenyOwnEmployeeRequests(int userId, UserReimRequests userReimRequests)
 			throws BusinessException, HibernateException, ServletException, IOException {
 		Session session = null;
 		Transaction transaction = null;
