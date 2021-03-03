@@ -10,7 +10,7 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.connection.pool_size">5</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 		<mapping class="com.myreimbursement.model.Reasons"/>
 		<mapping class="com.myreimbursement.model.UploadTypes"/>

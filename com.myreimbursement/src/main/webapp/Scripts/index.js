@@ -8,7 +8,7 @@ this.isManager = isManager;
 }
 
 function submitLogin(){
-    let url = "http://localhost:8080/com.myreimbursement/Dispatcher/api/login";
+    let url = "http://3.142.80.3:8088/com.myreimbursement/Dispatcher/api/login";
 
     let xhr = new XMLHttpRequest();
 

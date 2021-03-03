@@ -12,7 +12,7 @@ this.requestId = requestDate;
 }
 
 function submitReimbursementRequest(){
-    let url = "http://localhost:8080/Dispatcher/api/efunc2";
+    let url = "http://3.142.80.3:8088/Dispatcher/api/efunc2";
 
     let xhr = new XMLHttpRequest();
 

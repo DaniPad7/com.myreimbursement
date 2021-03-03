@@ -1,5 +1,5 @@
 function getAnEmployeePendingRequest() {
-    let url = "http://localhost:8088/com.myreimbursement/Dispatcher/api/mfunc6";
+    let url = "http://3.142.80.3:8088/com.myreimbursement/Dispatcher/api/mfunc6";
     let xhr = new XMLHttpRequest();
     let tbody = document.getElementById('infoHere');
     xhr.onreadystatechange = function(){
