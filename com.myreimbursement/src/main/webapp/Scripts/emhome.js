@@ -1,5 +1,5 @@
 function logout(){
-    let url = "http://3.142.80.3:8088/com.myreimbursement/Dispatcher/api/logout";
+    let url = "http://18.216.101.201:8088/com.myreimbursement/Dispatcher/api/logout";
 
     let xhr = new XMLHttpRequest();
 

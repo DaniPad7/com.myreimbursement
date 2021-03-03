@@ -12,7 +12,7 @@ this.requestId = requestDate;
 }
 
 function submitReimbursementRequest(){
-    let url = "http://3.142.80.3:8088/com.myreimbursement/Dispatcher/api/efunc1";
+    let url = "http://18.216.101.201:8088/com.myreimbursement/Dispatcher/api/efunc1";
 
     let xhr = new XMLHttpRequest();
     let formData = new FormData();

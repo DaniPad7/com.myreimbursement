@@ -12,7 +12,7 @@ this.country = country;
 }
 
 function updatePersInfo(){
-    let url = "http://3.142.80.3:8088/com.myreimbursement/Dispatcher/api/efunc6";
+    let url = "http://18.216.101.201:8088/com.myreimbursement/Dispatcher/api/efunc6";
 
     let xhr = new XMLHttpRequest();
 
