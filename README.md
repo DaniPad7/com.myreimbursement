@@ -20,13 +20,12 @@
 <ul>
 <li>Managers/Employees can login and logout.</li>
 <li>Managers can view personal and business information.</li>
-<li>Employees can view personal information.</li>
-
+<li>Employees can view personal information and update personal information.</li>
+<li>Managers can approve or deny a reimbursement request.</li>
+<li>Managers/Employees can submit a reimbursement request.</li>
 </ul>
 <h3>To Do's:</h3>
 <ul>
-<li>Managers can approve or deny a reimbursement request.</li>
-<li>Managers/Employees can submit a reimbursement reuqest and update personal information.</li>
   <li>A receipt image can be uploaded and persisted into the database for retrieval.</li>
 </ul>
 <h2>Getting Started</h2>
