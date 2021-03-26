@@ -35,3 +35,6 @@
 <li>Create a new Maven Project and choose to open the git clone.</li>
 <li>Run this specific project under a Tomcat Server, Port 8080.</li>
 </ul>
+<h2>Licenses</h2>
+<p><a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a></p>
+<p><a href="https://www.apache.org/licenses/">https://www.apache.org/licenses/</a></p>
